@@ -1,25 +1,25 @@
 """Constants.
 
 From pygame:
-    QUIT
-    MOUSEBUTTONDOWN
-    MOUSEBUTTONUP
-    MOUSEMOTION
-    KEYDOWN
+	QUIT
+	MOUSEBUTTONDOWN
+	MOUSEBUTTONUP
+	MOUSEMOTION
+	KEYDOWN
 
 PGU specific:
-    ENTER
-    EXIT
-    BLUR
-    FOCUS
-    CLICK
-    CHANGE
-    OPEN
-    CLOSE
-    INIT
+	ENTER
+	EXIT
+	BLUR
+	FOCUS
+	CLICK
+	CHANGE
+	OPEN
+	CLOSE
+	INIT
 
 Other:
-    NOATTR
+	NOATTR
 
 """
 import pygame
@@ -36,6 +36,6 @@ CLOSE = pygame.locals.USEREVENT + 7
 INIT = 'init'
 
 class NOATTR: 
-    pass
+	pass
 
 

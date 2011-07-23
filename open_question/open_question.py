@@ -64,6 +64,7 @@ class open_question(item.item):
 		self.experiment.resources["%s.png" % self.item_type] = os.path.join(os.path.split(__file__)[0], "%s.png" % self.item_type)
 		self.experiment.resources["%s_large.png" % self.item_type] = os.path.join(os.path.split(__file__)[0], "%s_large.png" % self.item_type)
 		self.experiment.resources["%s.html" % self.item_type] = os.path.join(path, "questionnaire_plugins.html")
+		self.experiment.resources["mouse_cursor.png"] = os.path.join(path, "mouse_cursor.png")
 
 	def prepare(self):
 
@@ -88,12 +89,8 @@ class open_question(item.item):
 		self.experiment.set("response", None)
 		self.experiment.set("response_time", None)
 
-		# Show the mouse cursor
-		my_mouse = mouse(self.experiment)
-		my_mouse.set_visible(True)
-
 		# Create the app
-		self.app = gui.Desktop()
+		self.app = gui.Desktop(item=self)
 		self.app.connect(gui.QUIT, self.app.quit, None)
 
 		pad = 0 # The maximum line length, used to pad the options
@@ -128,10 +125,7 @@ class open_question(item.item):
 		# Set the response and response time
 		self.experiment.set("response", self.experiment.usanitize(QtCore.QString(t.value.strip())))
 		self.experiment.set("response_time", self.time() - self.sri)
-
-		# Hide the mouse
-		my_mouse.set_visible(False)
-
+		
 		# Return success
 		return True
 

@@ -6,9 +6,9 @@ import pygame
 # The basestring class was removed in Python 3, but we want to keep it to maintain 
 # compatibility with previous versions of python.
 try:
-    __builtins__["basestring"]
+	__builtins__["basestring"]
 except KeyError:
-    __builtins__["basestring"] = str
+	__builtins__["basestring"] = str
 
 from .theme import Theme
 from .style import Style
