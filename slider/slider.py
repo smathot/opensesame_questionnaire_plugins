@@ -127,10 +127,10 @@ class slider(item.item):
 			if button != None:
 				break
 
-			slider_percent = 100.0*slider_fill/slider_w
+		slider_percent = 100.0*slider_fill/slider_w
 
-		# Set the response and response time
-		self.experiment.set("slider_percent", slider_percent)
+		# Set the response
+		self.experiment.set("response", slider_percent)
 
 		# Return success
 		return True
