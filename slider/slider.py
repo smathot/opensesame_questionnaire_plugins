@@ -129,7 +129,7 @@ class slider(item.item):
 
 		slider_percent = 100.0*slider_fill/slider_w
 
-		# Set the response and response time
+		# Set the response
 		self.experiment.set("response", slider_percent)
 
 		# Return success
