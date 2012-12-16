@@ -45,7 +45,7 @@ class open_question(item.item):
 		string -- definitional string (default = None)
 		"""
 
-		global path		
+		global path
 
 		self.item_type = "open_question"
 		self.description = "Presents a form for open ended questions"
@@ -54,7 +54,7 @@ class open_question(item.item):
 		self.accept_text = "Accept"
 		self.text_area_width = 500
 		self.text_area_height = 300
-		self.allow_empty = "no"		
+		self.allow_empty = "no"
 
 		# Pass the word on to the parent
 		item.item.__init__(self, name, experiment, string)
@@ -113,7 +113,7 @@ class open_question(item.item):
 
 		c.tr()
 		e = gui.Button(self.get("accept_text"))
-		e.connect(gui.CLICK, self.app.quit, None)		
+		e.connect(gui.CLICK, self.app.quit, None)
 		c.td(e, align=-1, height=32, valign=1)
 
 		# Keep running the app until a response has been received
@@ -123,9 +123,9 @@ class open_question(item.item):
 				break
 
 		# Set the response and response time
-		self.experiment.set("response", self.experiment.usanitize(QtCore.QString(t.value.strip())))
+		self.experiment.set("response", self.experiment.usanitize(unicode(QtCore.QString(t.value.strip()))))
 		self.experiment.set("response_time", self.time() - self.sri)
-		
+
 		# Return success
 		return True
 
@@ -161,9 +161,9 @@ class qtopen_question(open_question, qtplugin.qtplugin):
 
 		# Content editor
 		self.add_line_edit_control("accept_text", "Text on accept button", tooltip = "The text that appears on the accept button")
-		self.add_combobox_control("allow_empty", "Allow empty response", ["yes", "no"], tooltip = "Indicates whether an empty response is allowed")		
+		self.add_combobox_control("allow_empty", "Allow empty response", ["yes", "no"], tooltip = "Indicates whether an empty response is allowed")
 		self.add_spinbox_control("text_area_width", "Text area width", 100, 10000, tooltip = "The width of the text area")
-		self.add_spinbox_control("text_area_height", "Text area height", 100, 10000, tooltip = "The height of the text area")		
+		self.add_spinbox_control("text_area_height", "Text area height", 100, 10000, tooltip = "The height of the text area")
 		self.add_editor_control("question", "Question", tooltip = "The question that you want to ask")
 
 		self.lock = False

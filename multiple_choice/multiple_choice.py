@@ -92,7 +92,7 @@ class multiple_choice(item.item):
 
 		# Sanitize unicode. Due to a bug in usanitize() we need to convert it
 		# to a QString first.
-		response = self.experiment.usanitize(QtCore.QString(response))
+		response = self.experiment.usanitize(unicode(QtCore.QString(response)))
 
 		# The response time if based on the first selection
 		if self.get("response_time") == "None":
@@ -183,7 +183,7 @@ class multiple_choice(item.item):
 			c.tr()
 			for option in choices:
 				l = gui.Label(option)
-				c.td(l, align=-1, height=32)			
+				c.td(l, align=-1, height=32)
 
 			# Next a row with response buttons
 			c.tr()
@@ -192,15 +192,15 @@ class multiple_choice(item.item):
 					r = gui.Radio(group, value=option)
 				else:
 					r = gui.Checkbox(group, value=option)
-				r.connect(gui.CLICK, self.set_response, option)					
-				c.td(r, align=-1, width=32, height=32)			
-				
+				r.connect(gui.CLICK, self.set_response, option)
+				c.td(r, align=-1, width=32, height=32)
+
 
 		# Add the accept button, if necessary
 		if self.get("accept_on_click") == "no":
 			c.tr()
 			e = gui.Button(self.get("accept_text"))
-			e.connect(gui.CLICK, self.app.quit, None)		
+			e.connect(gui.CLICK, self.app.quit, None)
 			c.td(e, colspan=span, align=-1, height=32, valign=1)
 
 		# Keep running the app until a response has been received
@@ -208,7 +208,7 @@ class multiple_choice(item.item):
 			self.app.run(c)
 			if self.get("response") != "None" or self.get("allow_empty") == "yes":
 				break
-		
+
 		# Return success
 		return True
 
@@ -247,7 +247,7 @@ class qtmultiple_choice(multiple_choice, qtplugin.qtplugin):
 		self.add_line_edit_control("accept_text", "Text on accept button", tooltip = "The text that appears on the accept button")
 		self.add_combobox_control("allow_multiple", "Allow multiple responses", ["yes", "no"], tooltip = "Indicates whether multiple simultaneous responses are allowed")
 		self.add_combobox_control("allow_empty", "Allow empty response", ["yes", "no"], tooltip = "Indicates whether an empty response is allowed")
-		self.add_combobox_control("accept_on_click", "Accept on click", ["yes", "no"], tooltip = "Indicates if the answer should be accepted right away or if the accept button should be shown")		
+		self.add_combobox_control("accept_on_click", "Accept on click", ["yes", "no"], tooltip = "Indicates if the answer should be accepted right away or if the accept button should be shown")
 		self.add_combobox_control("orientation", "Orientation", ["horizontal", "vertical"], tooltip = "Indicates the orientation of the responses")
 		self.add_editor_control("question", "Question", tooltip = "The question that you want to ask")
 
